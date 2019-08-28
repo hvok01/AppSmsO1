@@ -9,6 +9,6 @@ public class RecibirMensaje extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Mensaje recibido", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Nuevo Mensaje", Toast.LENGTH_LONG).show();
     }
 }

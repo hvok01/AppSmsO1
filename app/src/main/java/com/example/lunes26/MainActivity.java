@@ -35,30 +35,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        this.re = new RecibirMensaje();
+        IntentFilter filter = new IntentFilter(BROADCAST_ACTION);
+        registerReceiver(re,filter);
     }
 
     @Override
     protected void onPause() {
+
         super.onPause();
-    }
 
-    public void registrarDinamicamente() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(BROADCAST_ACTION);
-        registerReceiver(re, filter);
-    }
-
-    public void enviarUsandoBreadcastDinamico() {
-        Intent i = new Intent();
-        i.setAction(BROADCAST_ACTION);
-        sendBroadcast(i);
+        if (re != null) {
+            unregisterReceiver(re);
+        }
     }
 
     @Override
     protected void onDestroy() {
-        if (re != null) {
-            unregisterReceiver(re);
-        }
+
         super.onDestroy();
     }
 
